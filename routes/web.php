@@ -17,14 +17,26 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin/products/create','ProductController@create'); //formulario
 
-Route::get('/admin/products','ProductController@index');//listar
+Route::middleware(['auth','admin'])->group(function () {
+    Route::get('/admin/products/create','ProductController@create'); //formulario
 
-Route::post('/admin/products','ProductController@store');//crear
+    Route::get('/admin/products','ProductController@index');//listar
 
-Route::get('/admin/products/{id}/edit','ProductController@edit'); //formulario edicion
+    Route::post('/admin/products','ProductController@store');//crear
 
-Route::post('/admin/products/{id}/edit','ProductController@update');//editar
+    Route::get('/admin/products/{id}/edit','ProductController@edit'); //formulario edicion
 
-Route::post('/admin/products/{id}/delete','ProductController@delete');//eliminar producto
+    Route::post('/admin/products/{id}/edit','ProductController@update');//editar
+
+    Route::post('/admin/products/{id}/delete','ProductController@delete');//eliminar producto
+
+    Route::get('/admin/products/{id}/images','ImageController@index');//lista de imagenes
+
+    Route::post('/admin/products/{id}/images','ImageController@store');//agregar imagen
+
+    Route::post('/admin/images/{id}/delete','ImageController@destroy');//eliminar imagen
+
+    Route::get('/admin/products/{id}/images/select/{image}','ImageController@select'); //featured pic
+});
+

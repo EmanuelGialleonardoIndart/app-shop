@@ -42,6 +42,9 @@
                       <a href="{{ url('/admin/products/'.$product->id.'/edit')}}" rel="tooltip" class="btn btn-success btn-round">
                          <i class="material-icons">edit</i>
                       </a>
+                      <a href="{{ url('/admin/products/'.$product->id.'/images')}}" rel="tooltip" class="btn btn-warning btn-round">
+                         <i class="material-icons">image</i>
+                      </a>
                       <button type="submit" rel="tooltip" class="btn btn-danger btn-round">
                          <i class="material-icons">close</i>
                       </button>
@@ -58,4 +61,5 @@
       </div>
     </div>
   </div>
+  @include('includes.footer')
 @endsection
